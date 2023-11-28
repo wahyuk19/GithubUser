@@ -8,6 +8,10 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "github_users", indices = [Index(value = ["id"], unique = true)])
 data class UserEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    val id: Int,
+
     @ColumnInfo(name = "avatar_url")
     @SerializedName("avatar_url")
     val avatarUrl: String?,
@@ -60,10 +64,6 @@ data class UserEntity(
     @ColumnInfo(name = "html_url")
     @SerializedName("html_url")
     val htmlUrl: String?,
-
-    @PrimaryKey
-    @ColumnInfo(name = "id")
-    val id: Int,
 
     @ColumnInfo(name = "location")
     val location: String?,

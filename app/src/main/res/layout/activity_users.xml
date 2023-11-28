@@ -23,6 +23,8 @@
             android:layout_marginStart="8dp"
             android:hint="@string/search_user"
             android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:autofillHints="name"
             android:backgroundTint="@color/transparent"
             app:layout_constraintStart_toStartOf="parent"

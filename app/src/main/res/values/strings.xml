@@ -7,4 +7,5 @@
     <string name="join_date">Join Date : 121222</string>
     <string name="foll">0 Follower 1 Following</string>
     <string name="public_repos">Public Repos</string>
+    <string name="language">java</string>
 </resources>

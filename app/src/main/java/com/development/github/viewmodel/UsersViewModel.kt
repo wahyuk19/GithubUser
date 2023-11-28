@@ -8,6 +8,7 @@ import androidx.paging.cachedIn
 import com.development.github.data.db.UserEntity
 import com.development.github.data.repository.GithubRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -48,7 +49,7 @@ class UsersViewModel @Inject constructor(private val repository: GithubRepositor
     }
 
     private suspend fun getAllUsers(){
-        repository.getUser().distinctUntilChanged().cachedIn(viewModelScope).collect{
+        repository.getUsers().distinctUntilChanged().cachedIn(viewModelScope).collect{
             _userState.value = it
         }
     }
