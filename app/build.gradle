@@ -23,7 +23,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
-            buildConfigField("String", "API_TOKEN", "\"Bearer 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\"")
+            buildConfigField("String", "API_TOKEN", "\"Bearer ghp_yBkZyG1KAwRfZov\"")
         }
         release {
             minifyEnabled false
@@ -45,7 +45,8 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation "androidx.activity:activity-ktx:1.8.1"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -62,6 +63,7 @@ dependencies {
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
+    kapt 'com.github.bumptech.glide:compiler:4.13.2'
 
     def room_version = "2.6.0"
 
@@ -98,12 +100,12 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
 
-    def paging_version = "3.0.0" //current version at the time
+    def paging_version = "3.2.1" //current version at the time
 
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     // optional - RxJava2 support
-    implementation "androidx.paging:paging-rxjava2:$paging_version"
+    implementation "androidx.paging:paging-rxjava2-ktx:$paging_version"
 
     // optional - RxJava3 support
     implementation "androidx.paging:paging-rxjava3:$paging_version"

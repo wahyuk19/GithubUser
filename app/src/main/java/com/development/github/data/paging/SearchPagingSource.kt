@@ -1,5 +1,6 @@
 package com.development.github.data.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.development.github.data.api.GithubApi
@@ -18,6 +19,7 @@ class SearchPagingSource(private val token: String,private val username: String,
         return try{
             val position = params.key ?: INITIAL_PAGE_INDEX
             val responseData = api.searchUser(token,username,position)
+            Log.d("TAG", "load: $responseData")
 
             LoadResult.Page(
                 data = responseData.items,
