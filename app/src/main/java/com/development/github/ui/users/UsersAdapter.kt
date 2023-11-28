@@ -1,6 +1,7 @@
 package com.development.github.ui.users
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.development.github.R
 import com.development.github.data.db.UserEntity
 import com.development.github.databinding.ItemUsersBinding
+import com.development.github.ui.details.UserDetailsActivity
 
 class UsersAdapter : PagingDataAdapter<UserEntity, UsersAdapter.UsersViewHolder>(USER_COMPARATOR){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
@@ -25,6 +27,12 @@ class UsersAdapter : PagingDataAdapter<UserEntity, UsersAdapter.UsersViewHolder>
                 .placeholder(R.drawable.baseline_broken_image_24)
                 .into(holder.binding.imgAvatar)
             holder.binding.txvUsername.text = user.login
+
+            holder.binding.clItem.setOnClickListener {
+                val intent = Intent(holder.itemView.context,UserDetailsActivity::class.java)
+                intent.putExtra("username",user.login)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 

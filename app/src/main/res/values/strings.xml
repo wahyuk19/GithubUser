@@ -3,4 +3,8 @@
     <string name="img">image</string>
     <string name="username">Sample username</string>
     <string name="search_user">Search..</string>
+    <string name="bio">Bio : %1</string>
+    <string name="join_date">Join Date : 121222</string>
+    <string name="foll">0 Follower 1 Following</string>
+    <string name="public_repos">Public Repos</string>
 </resources>

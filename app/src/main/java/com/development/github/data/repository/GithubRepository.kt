@@ -31,7 +31,7 @@ class GithubRepository @Inject constructor(
         ).flow
     }
 
-    suspend fun getUser(): Flow<PagingData<UserEntity>>{
+    fun getUser(): Flow<PagingData<UserEntity>>{
         return Pager(
             config = PagingConfig(
                 pageSize = 30
