@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,7 +13,6 @@ import com.development.github.data.Resource
 import com.development.github.databinding.ActivityUserDetailsBinding
 import com.development.github.utils.convertDate
 import com.development.github.viewmodel.UserDetailsViewModel
-import com.development.github.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

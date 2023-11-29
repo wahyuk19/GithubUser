@@ -1,6 +1,5 @@
 package com.development.github.ui.users
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup

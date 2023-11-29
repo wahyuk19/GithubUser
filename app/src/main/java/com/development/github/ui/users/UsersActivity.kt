@@ -2,13 +2,13 @@ package com.development.github.ui.users
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.development.github.R
 import com.development.github.databinding.ActivityUsersBinding
+import com.development.github.utils.NotificationPermissionDialog
 import com.development.github.viewmodel.UsersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -27,7 +27,7 @@ class UsersActivity : AppCompatActivity() {
         adapter = UsersAdapter()
 
         with(binding){
-            var isSearching = false
+            checkAndRequestNotificationPermission()
 
             rvUsers.layoutManager = LinearLayoutManager(this@UsersActivity)
             rvUsers.adapter = adapter
@@ -35,7 +35,7 @@ class UsersActivity : AppCompatActivity() {
             getAllUsers()
 
             edtSearch.addTextChangedListener{ s ->
-                isSearching = if(s.toString().isNotEmpty()){
+                val isSearching = if(s.toString().isNotEmpty()){
                     lifecycleScope.launch {
                         usersViewModel.searchUsers(s.toString()).collectLatest {pagingData ->
                             adapter.submitData(pagingData)
@@ -49,6 +49,12 @@ class UsersActivity : AppCompatActivity() {
                 }
                 checkEndButton(isSearching)
             }
+        }
+    }
+
+    private fun checkAndRequestNotificationPermission() {
+        if (!NotificationPermissionDialog.isNotificationPermissionGranted(this)) {
+            NotificationPermissionDialog.showPermissionDialog(this)
         }
     }
 

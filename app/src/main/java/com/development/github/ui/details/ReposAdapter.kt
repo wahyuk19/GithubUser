@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.development.github.data.db.UserEntity
 import com.development.github.data.model.ReposItem
 import com.development.github.databinding.ItemReposBinding
 import com.development.github.utils.ReposDiffCallback

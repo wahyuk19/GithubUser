@@ -2,6 +2,9 @@ package com.development.github.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.development.github.BuildConfig
 import com.development.github.data.api.GithubApi
 import com.development.github.data.db.GithubDao
@@ -24,14 +27,27 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideGithubApi(): GithubApi{
+    fun provideGithubApi(@ApplicationContext context: Context): GithubApi{
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient().newBuilder()
 
+        val chuckerCollector = ChuckerCollector(
+            context = context,
+            showNotification = true,
+            retentionPeriod = RetentionManager.Period.ONE_HOUR
+        )
+
+        val chuckerInterceptor = ChuckerInterceptor.Builder(context)
+            .collector(chuckerCollector)
+            .maxContentLength(250_000L)
+            .alwaysReadResponseBody(true)
+            .createShortcut(true)
+            .build()
+
         val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
+            .addInterceptor(chuckerInterceptor)
             .connectTimeout(50, TimeUnit.SECONDS)
             .readTimeout(50, TimeUnit.SECONDS)
             .retryOnConnectionFailure(false)

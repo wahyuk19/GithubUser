@@ -4,16 +4,13 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import com.development.github.BuildConfig
 import com.development.github.data.Resource
 import com.development.github.data.api.GithubApi
-import com.development.github.data.db.GithubDao
 import com.development.github.data.db.GithubRoomDatabase
 import com.development.github.data.db.UserEntity
 import com.development.github.data.db.UserRemoteMediator
 import com.development.github.data.model.ReposItem
-import com.development.github.data.model.SearchResult
 import com.development.github.data.paging.SearchPagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
