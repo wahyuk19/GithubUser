@@ -23,7 +23,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
-            buildConfigField("String", "API_TOKEN", "\"Bearer ghp_yBkZyG1KAwRfZov\"")
+            buildConfigField("String", "API_TOKEN", "\"Bearer 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\"")
         }
         release {
             minifyEnabled false
@@ -91,8 +91,8 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     //hilt
-    implementation "com.google.dagger:hilt-android:2.46"
-    kapt "com.google.dagger:hilt-compiler:2.46"
+    implementation "com.google.dagger:hilt-android:2.49"
+    kapt "com.google.dagger:hilt-compiler:2.49"
 
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
@@ -119,4 +119,9 @@ dependencies {
 
 kapt {
     correctErrorTypes true
+    arguments {
+        arg("kapt.kotlin.generated", "$projectDir/build/generated/source/kaptKotlin/debug")
+        // Add this line to allow access to the JavaCompiler
+        arg("jdk.compiler", "true")
+    }
 }

@@ -15,7 +15,6 @@ import com.development.github.data.paging.SearchPagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-private const val TOKEN_PART = "UVs92gV3bIVzni446jcYk"
 @OptIn(ExperimentalPagingApi::class)
 class GithubRepository @Inject constructor(
     private val db: GithubRoomDatabase,
@@ -28,7 +27,7 @@ class GithubRepository @Inject constructor(
                 pageSize = 30
             ),
             pagingSourceFactory = {
-                SearchPagingSource(BuildConfig.API_TOKEN+TOKEN_PART,username, api)
+                SearchPagingSource(BuildConfig.API_TOKEN,username, api)
             }
         ).flow
     }
@@ -38,7 +37,7 @@ class GithubRepository @Inject constructor(
             config = PagingConfig(
                 pageSize = 30
             ),
-            remoteMediator = UserRemoteMediator(BuildConfig.API_TOKEN+TOKEN_PART,db,api),
+            remoteMediator = UserRemoteMediator(BuildConfig.API_TOKEN,db,api),
             pagingSourceFactory = {
                 db.githubDao().getAllUsersAsc()
             }
@@ -48,7 +47,7 @@ class GithubRepository @Inject constructor(
     suspend fun getRepos(username: String): Resource<List<ReposItem>>{
         val response = try{
             Resource.Loading(data = true)
-            api.getRepos(BuildConfig.API_TOKEN+TOKEN_PART,username)
+            api.getRepos(BuildConfig.API_TOKEN,username)
         }catch (e: Exception){
             return Resource.Error(message = "An error occured ${e.message.toString()}")
         }
@@ -59,7 +58,7 @@ class GithubRepository @Inject constructor(
     suspend fun getDetailUser(username: String): Resource<UserEntity>{
         val response = try{
             Resource.Loading(data = true)
-            api.getUserDetail(BuildConfig.API_TOKEN+TOKEN_PART,username)
+            api.getUserDetail(BuildConfig.API_TOKEN,username)
         }catch (e: Exception){
             return Resource.Error(message = "An error occured ${e.message.toString()}")
         }
